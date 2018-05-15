@@ -1,6 +1,6 @@
 (function(){
 
-const ryan = document.querySelector('#ryan');
+const brown = document.querySelector('#brown');
 const face = document.querySelectorAll('.ears, .eyes, .muzzle');
 const email = document.querySelector('input[type="text"]');
 const password = document.querySelector('input[type="password"]');
@@ -23,11 +23,11 @@ function focus(event) {
 
 function reset(event) {
     event.target.classList.remove('focused');
-    ryan.classList.remove('playing');
+    brown.classList.remove('playing');
 
     clearTimeout(timer);
     timer = setTimeout( () => {
-        ryan.classList.remove('look-away', 'down', 'up');
+        brown.classList.remove('look-away', 'down', 'up');
         rotate3d(0,0,0,0);
     }, 1 );
 }
@@ -59,12 +59,12 @@ function look(event) {
 
     span.innerText = text || '.';
 
-    const ryanRect = ryan.getBoundingClientRect();
+    const brownRect = brown.getBoundingClientRect();
     const inputRect = el.getBoundingClientRect();
     const caretRect = span.getBoundingClientRect();
     const caretPos = caretRect.left + Math.min(caretRect.width, inputRect.width) * !!text;
-    const distCaret = ryanRect.left + ryanRect.width/2 - inputRect.left - caretPos;
-    const distInput = ryanRect.top + ryanRect.height/2 - inputRect.top;
+    const distCaret = brownRect.left + brownRect.width/2 - inputRect.left - caretPos;
+    const distInput = brownRect.top + brownRect.height/2 - inputRect.top;
     const y = Math.atan2(-distCaret, Math.abs(distInput)*3);
     const x =  Math.atan2(distInput, Math.abs(distInput)*3 / Math.cos(y));
     const angle = Math.max(Math.abs(x), Math.abs(y));
@@ -74,15 +74,15 @@ function look(event) {
 
 function lookAway(event) {
     const el = event.target;
-    const ryanRect = ryan.getBoundingClientRect();
+    const brownRect = brown.getBoundingClientRect();
     const inputRect = el.getBoundingClientRect();
-    const distInput = ryanRect.top + ryanRect.height/2 - inputRect.top;
+    const distInput = brownRect.top + brownRect.height/2 - inputRect.top;
 
-    ryan.classList.add( 'look-away', distInput < 0 ? 'up' : 'down' );
+    brown.classList.add( 'look-away', distInput < 0 ? 'up' : 'down' );
 
     clearTimeout(timer);
     timer = setTimeout( () => {
-        ryan.classList.add( 'playing' );
+        brown.classList.add( 'playing' );
     }, 300);
 }
 
